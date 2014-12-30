@@ -17,6 +17,8 @@ max_coin_d = 30.61;
 max_coin_thickness = 2.15+1;
 coin_dia_gap = 1.0;
 
+//needs significant incline for coins to roll down spiral
+unit_height = max_coin_d * 2;
 
 function rail(setBlocker,outerRailHeight) {
     var stack = [];
@@ -41,11 +43,11 @@ function rail_spiral() {
         curCoin = coin_diameter_list[min(coin_diameter_list.length-1,(i-(i%60))/60)];
 
         stack.push(
-            translate([0,0,i*(max_coin_d*1.5)/360],
+            translate([0,0,i*(unit_height)/360],
                 rotate([10,0,i],
                     translate([15+i*(max_coin_d+4)/360,0,0],
                         rotate([0,30,0],
-                        i%60===0 ? rail(true,curCoin+8) : rail(false,curCoin - 0.2 + ((i%60)/60))
+                        i%60===0 ? rail(true,curCoin+8) : rail(false,curCoin + ((i%60)/60))
                         )
                     )
                 )
@@ -56,7 +58,7 @@ function rail_spiral() {
                 translate([0,0,-5],
                     rotate([0,0,i],
                         translate([15+i*(max_coin_d+4)/360,0,0],
-                            scale([1,1,5.5+i*(max_coin_d*1.5)/360],
+                            scale([1,1,5.5+i*(unit_height)/360],
                                 cylinder({r:2,h:1})
                             )
                         )
