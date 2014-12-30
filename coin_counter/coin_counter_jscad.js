@@ -14,13 +14,15 @@ coin_dia_gap = 1.0;
 function rail() {
     var stack = [];
     stack.push(scale([max_coin_thickness,2,2],cube()).translate([-max_coin_thickness/2,-1,0]));
-    stack.push(scale([2,2,4],cube()).translate([-max_coin_thickness/2-2,-1,0]));
+    //inner rail
+//    stack.push(scale([2,2,4],cube()).translate([-max_coin_thickness/2-2,-1,0]));
+    //outer rail
     stack.push(scale([2,2,4],cube()).translate([max_coin_thickness/2,-1,0]));
     return stack;  
 }
 function rail_spiral() {
     var stack = [];
-    for(var i=0;i<361;i+=1) {
+    for(var i=0;i<361;i+=10) {
         stack.push(
             translate([0,0,i*(max_coin_d+4)/360],
                 rotate([10,0,i],
