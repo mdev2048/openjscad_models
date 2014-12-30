@@ -24,7 +24,7 @@ function rail(setBlocker,outerRailHeight) {
     //inner rail
 //    stack.push(scale([2,2,4],cube()).translate([-max_coin_thickness/2-2,-1,0]));
     //outer rail
-    if(setBlocker==true) {
+    if(setBlocker===true) {
         stack.push(scale([2,2,outerRailHeight],cylinder({r: 0.5, h: 1})  ).translate([max_coin_thickness/2,-1,0]));
     } else {
         stack.push(
@@ -37,14 +37,15 @@ function rail(setBlocker,outerRailHeight) {
 function rail_spiral() {
     var stack = [];
     var curCoin = coin_diameter_list[0];
-    for(var i=0;i<360;i+=20) {
-        curCoin = coin_diameter_list[(i-(i%60))/60];
+    for(var i=0;i<=360;i+=1) {
+        curCoin = coin_diameter_list[min(coin_diameter_list.length-1,(i-(i%60))/60)];
+
         stack.push(
             translate([0,0,i*(max_coin_d*1.5)/360],
                 rotate([10,0,i],
                     translate([15+i*(max_coin_d+4)/360,0,0],
                         rotate([0,30,0],
-                        i%60===0 ? rail(true,curCoin+2) : rail(false,curCoin - 0.2 + ((i%60)/60))
+                        i%60===0 ? rail(true,curCoin+8) : rail(false,curCoin - 0.2 + ((i%60)/60))
                         )
                     )
                 )
