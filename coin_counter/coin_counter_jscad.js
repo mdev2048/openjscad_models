@@ -47,13 +47,13 @@ function rail_spiral() {
                 rotate([10,0,i],
                     translate([15+i*(max_coin_d+4)/360,0,0],
                         rotate([0,30,0],
-                        i%60===0 ? rail(true,curCoin+8) : rail(false,curCoin + ((i%60)/60))
+                        i%60===0 ? rail(true,curCoin+8) : rail(false,curCoin + 1.0 -  ((i%60)/60))
                         )
                     )
                 )
             )    
         );
-        if(i%40===0) {
+        if(i%40===0) {  //add support
             stack.push(
                 translate([0,0,-5],
                     rotate([0,0,i],
